@@ -1,5 +1,7 @@
 import arrow from "@/assets/icons/arrow.png";
 import cross from "@/assets/icons/cross.png";
+import favorite from "@/assets/icons/favorite.png";
+import favorited from "@/assets/icons/favorited.png";
 import home from "@/assets/icons/home.png";
 import logo from "@/assets/icons/logo.png";
 import person from "@/assets/icons/person.png";
@@ -20,4 +22,6 @@ export const icons = {
   arrow,
   x,
   cross,
+  favorite,
+  favorited,
 };
