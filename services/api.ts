@@ -1,5 +1,6 @@
-const TMDB_API_KEY =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNTU2ZjA3ZmU2OTkwYTYwMGE2ZTcwMjI1OTE4ZWUwYSIsIm5iZiI6MTc0MzAyNTc0Ni41NTksInN1YiI6IjY3ZTQ3NjUyYjhmYzM5ODk5NjEwOTA5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qpDl7ryzpaRaCKlTl472jl964O8zPhq2rYqNP9aWWEI";
+import Config from "react-native-config";
+
+const TMDB_API_KEY = Config.TMDB_API_KEY;
 
 export const TMDB_CONFIG = {
   baseUrl: "https://api.themoviedb.org/3",
