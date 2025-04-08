@@ -30,7 +30,7 @@ const Profile = () => {
 
 
   return (
-    <View className="flex-1">
+    <View className="flex-1"> 
       <Text>Profile</Text>
       <TextInput className="" placeholder="email" />
       <TextInput placeholder="username" />
