@@ -1,7 +1,7 @@
 import { icons } from "@/constants/icons";
 import { fetchMovieDetails } from "@/services/api";
 import { FavoriteService } from "@/services/favoriteService";
-import useFetch from "@/services/useFeth";
+import useFetch from "@/services/useFetch";
 import { useMutation } from "@/services/useMutation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useRouter } from "expo-router";

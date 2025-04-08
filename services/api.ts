@@ -1,7 +1,4 @@
-import Config from "react-native-config";
-
-const TMDB_API_KEY = Config.TMDB_API_KEY;
-
+const TMDB_API_KEY = process.env.EXPO_PUBLIC_TMDB_API_KEY;
 export const TMDB_CONFIG = {
   baseUrl: "https://api.themoviedb.org/3",
   apiKey: TMDB_API_KEY,
@@ -22,7 +19,7 @@ export const fetchMovies = async (query: any) => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies...");
+    throw new Error("Failed to fetch movie details...");
   }
 
   const data = await response.json();
