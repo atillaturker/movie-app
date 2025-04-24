@@ -34,9 +34,12 @@ class AppwriteService {
         username
       );
 
-      if (userAccount) return await this.loginUser({ email, password });
+      if (userAccount) {
+        return userAccount;
+      }
     } catch (error) {
       console.log(`Appwrite Service Error :: createUserAccount() ${error} `);
+      throw error;
     }
   }
 
@@ -45,6 +48,7 @@ class AppwriteService {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
       console.log(`Appwrite Service Error :: loginUser() ${error} `);
+      throw error;
     }
   }
 
@@ -53,6 +57,7 @@ class AppwriteService {
       return await this.account.get();
     } catch (error) {
       console.log(`Appwrite Service Error :: getCurrentUser() ${error} `);
+      throw error;
     }
   }
 
@@ -61,6 +66,7 @@ class AppwriteService {
       return await this.account.deleteSession("current");
     } catch (error) {
       console.log(`Appwrite Service Error ::logoutUser() ${error} `);
+      throw error;
     }
   }
 }

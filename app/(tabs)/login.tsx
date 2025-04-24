@@ -1,5 +1,7 @@
+import AppwriteService from "@/appwrite/service";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
+import { useAuthStore } from "@/stores/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -14,7 +16,7 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-const Profile = () => {
+const Login = () => {
   const {
     control,
     handleSubmit,
@@ -23,7 +25,16 @@ const Profile = () => {
     resolver: zodResolver(loginSchema),
   });
 
+  const { isAuth } = useAuthStore();
+
   const onSubmit = (data: LoginFormData) => {
+    try {
+      const account = new AppwriteService();
+      account.loginUser({ email: data.email, password: data.password });
+      console.log("isAuth", isAuth);
+    } catch (error) {
+      console.log("Error login.");
+    }
     console.log("Login:", data);
   };
 
@@ -45,6 +56,11 @@ const Profile = () => {
         <Text className="text-3xl text-white font-extrabold text-center mb-2">
           Log In Now
         </Text>
+        {isAuth && (
+          <Text className="text-3xl text-white font-extrabold text-center mb-2">
+            Giriş başarılı
+          </Text>
+        )}
         <Text className="text-center text-gray-200 text-base">
           Please login to continue using our app
         </Text>
@@ -81,6 +97,7 @@ const Profile = () => {
               onChangeText={onChange}
               value={value}
               secureTextEntry
+              autoCapitalize="none"
             />
           )}
         />
@@ -104,11 +121,11 @@ const Profile = () => {
         </TouchableOpacity>
         <View className="flex-row justify-center">
           <Text className="text-gray-300 mr-1">Don't have an account?</Text>
-          <TouchableOpacity onPress={() => router.push("/register/register")}>
+          <TouchableOpacity onPress={() => router.push("/(screens)/register")}>
             <Text className="text-blue-600">Sing Up</Text>
           </TouchableOpacity>
         </View>
-        <View className="items-center mt-12">
+        {/* <View className="items-center mt-12">
           <Text className="text-gray-300 text-sm mb-4">Or connect with</Text>
           <View className="flex-row space-x-6">
             <TouchableOpacity className="bg-white p-3 rounded-full shadow">
@@ -130,10 +147,10 @@ const Profile = () => {
               />
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
       </View>
     </View>
   );
 };
 
-export default Profile;
+export default Login;
